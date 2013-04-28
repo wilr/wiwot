@@ -82,6 +82,8 @@ It will generate output something like the following..
 
 	node wiwot.js --since=1.week --until=1.day.ago yesterday ~/Sites
 
+*(Note: is waiting on https://github.com/domharrington/node-gitlog/pull/3)*
+
 *--since* and *--until* can be combined to allow you to filter the selected 
 time period for the reporting. By default git log is filtered to commits 
 since yesterday. The format specified is the same as [git-log(1)](https://www.kernel.org/pub/software/scm/git/docs/git-log.html)
@@ -95,8 +97,4 @@ since yesterday. The format specified is the same as [git-log(1)](https://www.ke
 Commits logged from each separate git repo. Defaults to 50.
 
 	node wiwot.js --max-commits="200" yesterday ~/Sites
-
-### Caveats
-
- - The script sets a maximum of 50 commits per repo.
 
