@@ -5,11 +5,11 @@ var util = require('util'),
 	walk = require('./lib/walk.js'),
 	depth = 2,
 	maxCommits = 50,
-	git = require('nodegit'),
-    async = require('async'),
-    gitlog = require('gitlog'),
-    commits = [],
-    exec = require('child_process').exec,
+	completed = 0,
+	projects = [],
+	gitlog = require('gitlog'),
+	commits = [],
+	exec = require('child_process').exec,
 	argv = require('optimist').argv;
 
 var getAuthor = function(callback) {
@@ -18,7 +18,7 @@ var getAuthor = function(callback) {
 	});
 };
 
-var process = function(repo, author, callback) {
+var getLog = function(repo, author, callback) {
 	gitlog({
 		repo: repo,
 		number: maxCommits,
@@ -47,7 +47,7 @@ var getName = function(repo) {
 var processList = function(repos, author, callback) {
 	var repo = repos.shift();
 
-	process(repo, author, function(err, results) {
+	getLog(repo, author, function(err, results) {
 		if(err) {
 			throw err;
 		}
@@ -80,7 +80,7 @@ var printResults = function(commits) {
 		var changes = commits[repo];
 
 		if(changes && Object.keys(changes).length > 0) {
-			console.log(getName(repo) + ".git\n");
+			console.log(getName(repo) + ".git ("+ repo +")");
 
 			_.each(changes, function(commit, i) {
 				total++;
@@ -90,6 +90,8 @@ var printResults = function(commits) {
 					" (#" + commit.abbrevHash + ")"
 				);
 			});
+
+			console.log();
 		}
 	});
 
@@ -107,32 +109,41 @@ var printResults = function(commits) {
 	}
 }
 
-var	read = function(dir) {
+var	read = function(dir, callback) {
 	if(fs.lstatSync(dir).isDirectory()) {
-		walk(dir, depth, function(err, repos) {
+		walk(dir, dir, depth, function(err, repos) {
 			if(err) {
 				throw err;
 			}
 
-			if(repos) {
-				getAuthor(function(err, author) {
-					processList(repos, author, function(error, commits)  {
-						if(error) {
-							throw error;
-						}
-
-						printResults(commits);
-					});
-				});
-			}
+			callback(err, repos)
 		});
 	}
 	else {
 		console.error('elem is not a directory, cannot read'); 
 	}
-}
+};
+
+var complete = function(repos) {
+	if(completed == argv._.length) {
+		getAuthor(function(err, author) {	
+			processList(repos, author, function(error, commits)  {
+				if(error) {
+					throw error;
+				}
+
+				printResults(commits);
+			});
+		});
+	}
+};
 
 _.each(argv._, function(elem, index, list) {
-	read(elem);
+	read(elem, function(err, results) {
+		completed++;
+		projects = projects.concat(results);
+
+		complete(projects);
+	});
 });
 
