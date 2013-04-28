@@ -10,8 +10,11 @@
   "engines": {
       "node": ">=0.8.8"
   },
+  "licenses": [{
+      "type": "BSD-3-Clause",
+      "url": "https://github.com/wilr/wiwot/blob/master/LICENSE"
+  }],
   "dependencies": {
-    "chrono": "1.0.4",
     "optimist": "0.4.0",
     "underscore": "1.4.4",
     "underscore.string": "2.3.1",
