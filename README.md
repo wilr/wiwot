@@ -2,7 +2,7 @@
 
 At DNA I have the pleasure to work on a large range of projects both small 
 and large on a weekly or even daily basis. Across languages, platforms and
-our and others source code repositories.
+ours, and others, source code repositories.
 
 By and large, jumping between projects on an hourly basis can result in my 
 brain being fried enough to forget everything I did over the course of the 
@@ -17,7 +17,9 @@ wiwot is a node utility that parses a given set of folders for changes through
 version control, collates them and outputs a report detailing the list of work
 for the day. For the moment it only supports git based repositories as most of 
 our projects are using git. Generating a list of all your commits to an svn
-repo is much easier (svn log the repository server).
+repo is much easier (svn log the repository server) whereas with a distributed
+system, all the log information is spread. This aims to simplify the process
+by running git log on a collection of folders.
 
 ## Requirements
 
