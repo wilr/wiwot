@@ -21,16 +21,20 @@ repo is much easier (svn log the repository server).
 
 ## Usage
 
->	wiwot ~/Sites
+>	node wiwot.js ~/Sites
 
 Will parse the ~/Sites folder for any git repos and generate a report for the
-current day. A number of other methods exist to customize the output.
+current day. You can also specify a number of other folders to check..
 
->	wiwot ~/Sites ~/Scripts ~/Infrastructure
+>	node wiwot.js ~/Sites ~/Scripts ~/Infrastructure
 
 ### Options
 
->	wiwot -d yesterday ~/Sites
+>	node wiwot.js -d yesterday ~/Sites
 
 *-d* allows you to filter the selected time period.
+
+### Caveats
+
+The script sets a maximum of 50 commits per repo.
 
