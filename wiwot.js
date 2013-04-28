@@ -4,7 +4,6 @@ var util = require('util'),
 	_s = require('underscore.string'),
 	walk = require('./lib/walk.js'),
 	depth = 2,
-	maxCommits = 50,
 	completed = 0,
 	projects = [],
 	gitlog = require('gitlog'),
@@ -21,9 +20,10 @@ var getAuthor = function(callback) {
 var getLog = function(repo, author, callback) {
 	gitlog({
 		repo: repo,
-		number: maxCommits,
+		number: argv['max-commits'] || 50,
 		author: author,
-		since: "yesterday",
+		since: argv.since || "yesterday",
+		until: argv.until || undefined,
 		fields: [ 
 			'hash', 'abbrevHash', 'subject', 'authorName', 
 			'authorDate', 'authorDateRel'
