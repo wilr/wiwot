@@ -1,3 +1,4 @@
+
 var util = require('util'), 
 	fs = require('fs'),
 	_ = require('underscore'),
@@ -6,6 +7,7 @@ var util = require('util'),
 	depth = 2,
 	completed = 0,
 	projects = [],
+	ignoredProjects = [],
 	gitlog = require('gitlog'),
 	commits = [],
 	exec = require('child_process').exec,
@@ -49,7 +51,7 @@ var processList = function(repos, author, callback) {
 
 	getLog(repo, author, function(err, results) {
 		if(err) {
-			throw err;
+			ignoredProjects.push(repo);
 		}
 
 		// filter the commits by the ones
@@ -65,7 +67,7 @@ var processList = function(repos, author, callback) {
 			processList(repos, author, callback);
 		}
 		else {
-			callback(err, commits);
+			callback(null, commits);
 		}
 	});
 };
@@ -73,6 +75,12 @@ var processList = function(repos, author, callback) {
 var printResults = function(commits) {
 	console.log("WIWOT - WHAT I WORKED ON TODAY\n");
 	console.log(Object.keys(commits).length + " projects found on system. \n");
+
+	if(ignoredProjects.length > 0) {
+		console.log(ignoredProjects.length + " projects ignored due to error(s) "+
+			"parsing the repo. Ignored:\n * " + ignoredProjects.join("\n * ") + "\n"
+		);
+	}
 
 	var total = 0;
 
