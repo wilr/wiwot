@@ -1,0 +1,3 @@
+- Replace callbacks with events
+- Break out git repo parsing out, have parsers for svn, hg.
+- Node tests
