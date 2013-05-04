@@ -34,12 +34,12 @@ by running git log on a collection of folders.
 
 ## Usage
 
-	node wiwot.js ~/Sites
+	wiwot.js ~/Sites
 
 Will parse the ~/Sites folder for any git repos and generate a report for the
 current day. You can also specify a number of other folders to check..
 
-	node wiwot.js ~/Sites ~/Scripts ~/Infrastructure
+	wiwot.js ~/Sites ~/Scripts ~/Infrastructure
 
 It will generate output something like the following..
 
@@ -80,7 +80,7 @@ It will generate output something like the following..
 
 #### since / until
 
-	node wiwot.js --since=1.week --until=1.day.ago yesterday ~/Sites
+	wiwot.js --since=1.week --until=1.day.ago yesterday ~/Sites
 
 *(Note: is waiting on https://github.com/domharrington/node-gitlog/pull/3)*
 
@@ -88,13 +88,13 @@ It will generate output something like the following..
 time period for the reporting. By default git log is filtered to commits 
 since yesterday. The format specified is the same as [git-log(1)](https://www.kernel.org/pub/software/scm/git/docs/git-log.html)
 
-	node wiwot.js --since="yesterday" ~/Sites
-	node wiwot.js --since="24 Apr" ~/Sites
-	node wiwot.js --since="7 days ago" --until="2 days ago" ~/Sites
+	wiwot.js --since="yesterday" ~/Sites
+	wiwot.js --since="24 Apr" ~/Sites
+	wiwot.js --since="7 days ago" --until="2 days ago" ~/Sites
 
 #### max-commits
 
 Commits logged from each separate git repo. Defaults to 50.
 
-	node wiwot.js --max-commits="200" yesterday ~/Sites
+	wiwot.js --max-commits="200" yesterday ~/Sites
 
