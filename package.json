@@ -1,14 +1,18 @@
 {
   "name" : "wiwot",
-  "version" : "0.1.0",
+  "version" : "0.1.1",
   "description" : "What I Worked On Today",
   "author" : "Will Rossiter",
+  "main": "index.js",
   "repository": {
       "type": "git",
       "url": "https://github.com/wilr/wiwot.git"
   },
   "engines": {
       "node": ">=0.8.8"
+  },
+  "scripts": {
+    "test": "mocha -r should"
   },
   "licenses": [{
       "type": "BSD-3-Clause",
@@ -19,6 +23,10 @@
     "underscore": "1.4.4",
     "underscore.string": "2.3.1",
     "gitlog": ""
+  },
+  "devDependencies": {
+    "should": "~0.6.3",
+    "mocha": "~1.4.0"
   }
 }
 
