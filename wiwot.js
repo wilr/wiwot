@@ -37,14 +37,14 @@ var scms = wiwot.supportedScms,
 if(argv._.length > 0) {
 	_.each(argv._, function(elem, index, list) {
 		if(fs.lstatSync(elem).isDirectory()) {
-			walk.startWalk(elem, scms, d, function(err, repos) {
 
+			walk(elem, scms, d, function(err, repos) {
 				if(err) {
 					throw err;
 				}
 
-				wiwot.addRepositories(err, repos, function() {
-					wiwot.printResults();
+				wiwot.addRepositories(err, repos, function(commits) {
+					wiwot.printResults(commits);
 				});
 			});
 		}
