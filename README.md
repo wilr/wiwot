@@ -98,3 +98,10 @@ Commits logged from each separate git repo. Defaults to 50.
 
 	wiwot.js --max-commits="200" yesterday ~/Sites
 
+#### depth
+
+Configure how deep from each folder you want the script the analyse. By default,
+the script will only look 2 directories deep, if you store nested git repositories
+(i.e as submodules) you may need to increase this to 3 or 4.
+
+	wiwot.js --depth="5" ~/Sites 

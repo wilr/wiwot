@@ -27,13 +27,17 @@ wiwot.setConfig({
 	'folders': argv._,
 	'max-commits': argv['max-commits'] || 25,
 	'since': argv.since || "yesterday",
-	'until': argv.until || undefined
+	'until': argv.until || undefined,
+	'depth': argv.depth || 2
 });
+
+var scms = wiwot.supportedScms,
+	d = wiwot.getConfig('depth');
 
 if(argv._.length > 0) {
 	_.each(argv._, function(elem, index, list) {
 		if(fs.lstatSync(elem).isDirectory()) {
-			walk.startWalk(elem, wiwot.supportedScms, depth, function(err, repos) {
+			walk.startWalk(elem, scms, d, function(err, repos) {
 
 				if(err) {
 					throw err;
