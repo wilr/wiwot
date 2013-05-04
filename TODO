@@ -1,3 +1,13 @@
 - Replace callbacks with events
-- Break out git repo parsing out, have parsers for svn, hg.
 - Node tests
+- Include ability to customize author (i.e --author "Some other developer")
+- Customizable ignored paths (e.g .settings)
+- Support .wiwot file in user directory for preferences and more complex yaml
+	
+	wiwot:
+		- Sites:
+			depth: 4
+			ignore: 
+				- git
+		- Scripts:
+			depth: 1
