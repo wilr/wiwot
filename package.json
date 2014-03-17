@@ -22,7 +22,7 @@
     "optimist": "0.4.0",
     "underscore": "1.4.4",
     "underscore.string": "2.3.1",
-    "gitlog": ""
+    "gitlog": "http://github.com/wilr/node-gitlog/tarball/since-pr"
   },
   "devDependencies": {
     "should": "~0.6.3",
