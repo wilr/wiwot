@@ -1,8 +1,4 @@
-# wiwot - What I Worked On Today
-
-At DNA I have the pleasure to work on a large range of projects both small 
-and large on a weekly or even daily basis. Across languages, platforms and
-ours, and others, source code repositories.
+# wiwot - what i worked on today
 
 By and large, jumping between projects on an hourly basis can result in my 
 brain being fried enough to forget everything I did over the course of the 
